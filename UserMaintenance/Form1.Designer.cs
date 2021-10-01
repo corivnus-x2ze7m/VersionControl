@@ -35,6 +35,7 @@ namespace UserMaintenance
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lbDefault = new System.Windows.Forms.ListBox();
+            this.btnFileWrite = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbLast
@@ -87,11 +88,21 @@ namespace UserMaintenance
             this.lbDefault.Size = new System.Drawing.Size(280, 355);
             this.lbDefault.TabIndex = 5;
             // 
+            // btnFileWrite
+            // 
+            this.btnFileWrite.Location = new System.Drawing.Point(440, 362);
+            this.btnFileWrite.Name = "btnFileWrite";
+            this.btnFileWrite.Size = new System.Drawing.Size(138, 23);
+            this.btnFileWrite.TabIndex = 6;
+            this.btnFileWrite.Text = "button1";
+            this.btnFileWrite.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnFileWrite);
             this.Controls.Add(this.lbDefault);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.textBox2);
@@ -114,6 +125,7 @@ namespace UserMaintenance
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ListBox lbDefault;
+        private System.Windows.Forms.Button btnFileWrite;
     }
 }
 

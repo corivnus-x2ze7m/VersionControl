@@ -18,8 +18,8 @@ namespace UserMaintenance
         {
             InitializeComponent();
             lbFirst.Text = Resource1.fullName;
-            lbLast.Text = Resource1.lastName;
             btnAdd.Text = Resource1.Add;
+            btnFileWrite.Text = Resource1.WriteFile;
 
             lbDefault.DataSource = users;
             lbDefault.ValueMember = "ID";
