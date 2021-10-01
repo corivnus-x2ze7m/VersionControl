@@ -9,9 +9,9 @@ namespace UserMaintenance.Entities
     class User
     {
         Guid id { get; set; } = Guid.NewGuid();
-        string firstName { get; set; }
-        string lastName { get; set; }
-        string fullName
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string fullName
         {
             get
             { 
