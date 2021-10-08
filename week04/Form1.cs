@@ -16,6 +16,7 @@ namespace week04
     {
         RealEstateEntities context = new RealEstateEntities();
         List<Flat> flats;
+        string[] headers;
         Excel.Application xlApp; //Excel application
         Excel.Workbook xlWB; //Created Workbook
         Excel.Worksheet xlSheet; //Working sheet inside the Workbook
@@ -72,7 +73,7 @@ namespace week04
 
         private void CreateTable()
         {
-            string[] headers = new string[]
+            string[] headers = 
             {
                 "Kód",
                 "Eladó",
@@ -111,7 +112,7 @@ namespace week04
                 values[counter, 5] = item.NumberOfRooms;
                 values[counter, 6] = item.FloorArea;
                 values[counter, 7] = item.Price;
-                values[counter, 8] = "=";
+                values[counter, 8] = "=H2/G2*100000";
 
                 counter++;
             }
@@ -124,7 +125,34 @@ namespace week04
 
         }
 
-        
+        private void FormatTable()
+        {
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            int lastRowID = xlSheet.UsedRange.Rows.Count;
+            int lastColumnID = xlSheet.UsedRange.Columns.Count;
+            Excel.Range WholeTable = xlSheet.get_Range(GetCell(2, 1), GetCell(lastRowID,lastColumnID));
+
+            WholeTable.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            Excel.Range FirstColumn = xlSheet.get_Range(GetCell(1, 2) , GetCell(1, lastColumnID));
+
+            FirstColumn.Font.Bold = true;
+            FirstColumn.Interior.Color = Color.LightYellow;
+
+            Excel.Range LastColumn = xlSheet.get_Range(GetCell(2, lastColumnID), GetCell(lastRowID, lastColumnID));
+
+            LastColumn.Interior.Color = Color.LightGreen;
+            //LastColumn.NumberFormat = Math.Round(2); erre hogy kéne google-ön rákeresni egyáltalán????? 20 perce keresem és nem találom
+
+        }
 
         private string GetCell(int x, int y)
         {
