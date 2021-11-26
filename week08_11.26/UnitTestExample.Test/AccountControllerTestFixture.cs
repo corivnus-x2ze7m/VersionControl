@@ -12,7 +12,7 @@ namespace UnitTestExample.Test
     {
         
         [Test, 
-            TestCase("abcd2134", false),
+            TestCase("abcd1234", false),
             TestCase("irf@uni-corvinus", false),
             TestCase("irf.uni-corvinus.hu",false),
             TestCase("irf@uni-corvinus.hu", true)]
@@ -25,6 +25,21 @@ namespace UnitTestExample.Test
             var actualResult = accountController.ValidateEmail(email);
 
             //Assert
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [Test,
+            TestCase("abCD", false),
+            TestCase("ABCD1234", false),
+            TestCase("abcd1234", false),
+            TestCase("ab1234", false),
+            TestCase("ABcd1234", true)]
+        public void PwValidate(string password, bool expectedResult)
+        {
+            var accountController = new AccountController();
+
+            var actualResult = accountController.ValidatePassword(password);
+
             Assert.AreEqual(expectedResult, actualResult);
         }
     }
