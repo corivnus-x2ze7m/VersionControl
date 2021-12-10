@@ -19,6 +19,7 @@ namespace week10
         int nbrOfSteps = 10;
         int nbrOfStepsIncrement = 1;
         int generation = 1;
+        Brain winner = null;
         public Form1()
         {
             InitializeComponent();
@@ -53,6 +54,16 @@ namespace week10
                     gc.AddPlayer(b.Mutate().ExpandBrain(nbrOfStepsIncrement));
                 else
                     gc.AddPlayer(b.Mutate());
+            }
+
+            var winners = from p in topPerformers
+                          where p.IsWinner
+                          select p;
+            if (winners.Count() > 0)
+            {
+                winner = winners.FirstOrDefault().Brain.Clone();
+                gc.GameOver -= Gc_GameOver;
+                return;
             }
             gc.Start();
         }
